@@ -1,14 +1,14 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import App from './App';
+// import App from './App';
 import { Route, HashRouter } from 'react-router-dom';
 import * as serviceWorker from './serviceWorker';
-
+import Home from './Home.jsx'
 const routing = (
     <HashRouter>
       <div>
-        <Route exact path="/" component={App} />
+        <Route exact path="/" component={Home} />
       </div>
     </HashRouter>
   )
