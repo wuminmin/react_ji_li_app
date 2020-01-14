@@ -16,7 +16,7 @@ export default class Home extends React.Component {
 
   renderContent(pageText){
     return(
-      <div>
+      <div style={{ backgroundColor: 'white', height: '100%', textAlign: 'center' }}>
          <h1>{pageText}</h1>
           <Button>{pageText}</Button>
       </div>
