@@ -1,8 +1,8 @@
-import { TabBar } from 'antd-mobile';
+import { TabBar, Button } from 'antd-mobile';
 import React from 'react';
 import "./Home.css";
 import 'antd-mobile/dist/antd-mobile.css';
-import App from './App';
+import ConfirmJiLi from './ConfirmJiLi';
 
 export default class Home extends React.Component {
   constructor(props) {
@@ -14,32 +14,20 @@ export default class Home extends React.Component {
     };
   }
 
-  renderContent(pageText) {
+  renderContent(pageText){
+    return(
+      <div>
+         <h1>{pageText}</h1>
+          <Button>{pageText}</Button>
+      </div>
+    )
+  }
+
+  renderContentConfirmJiLi(pageText) {
     return (
       <div style={{ backgroundColor: 'white', height: '100%', textAlign: 'center' }}>
         <h1>{pageText}</h1>
-        <App></App>
-        {/* <div style={{ paddingTop: 60 }}>Clicked “{pageText}” tab， show “{pageText}” information</div> */}
-        {/* <a style={{ display: 'block', marginTop: 40, marginBottom: 20, color: '#108ee9' }}
-          onClick={(e) => {
-            e.preventDefault();
-            this.setState({
-              hidden: !this.state.hidden,
-            });
-          }}
-        >
-          Click to show/hide tab-bar
-        </a>
-        <a style={{ display: 'block', marginBottom: 600, color: '#108ee9' }}
-          onClick={(e) => {
-            e.preventDefault();
-            this.setState({
-              fullScreen: !this.state.fullScreen,
-            });
-          }}
-        >
-          Click to switch fullscreen
-        </a> */}
+        <ConfirmJiLi></ConfirmJiLi>
       </div>
     );
   }
@@ -54,7 +42,7 @@ export default class Home extends React.Component {
           hidden={this.state.hidden}
         >
           <TabBar.Item
-            title="Life"
+            title="激励活动"
             key="Life"
             icon={<div style={{
               width: '22px',
@@ -77,7 +65,7 @@ export default class Home extends React.Component {
             }}
             data-seed="logId"
           >
-            {this.renderContent('Life')}
+            {this.renderContent('激励活动')}
           
           </TabBar.Item>
           <TabBar.Item
@@ -95,7 +83,7 @@ export default class Home extends React.Component {
                 background: 'url(https://gw.alipayobjects.com/zos/rmsportal/ekLecvKBnRazVLXbWOnE.svg) center center /  21px 21px no-repeat' }}
               />
             }
-            title="Koubei"
+            title="确认激励"
             key="Koubei"
             badge={'new'}
             selected={this.state.selectedTab === 'redTab'}
@@ -106,10 +94,10 @@ export default class Home extends React.Component {
             }}
             data-seed="logId1"
           >
-            {this.renderContent('Koubei')}
+            {this.renderContentConfirmJiLi('确认激励')}
           </TabBar.Item>
 
-          <TabBar.Item
+          {/* <TabBar.Item
             icon={
               <div style={{
                 width: '22px',
@@ -149,7 +137,7 @@ export default class Home extends React.Component {
             }}
           >
             {this.renderContent('My')}
-          </TabBar.Item>
+          </TabBar.Item> */}
         </TabBar>
       </div>
     );
