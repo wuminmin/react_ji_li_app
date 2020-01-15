@@ -1,8 +1,9 @@
 import { TabBar, Button } from 'antd-mobile';
 import React from 'react';
-import "./Home.css";
 import 'antd-mobile/dist/antd-mobile.css';
 import ConfirmJiLi from './ConfirmJiLi';
+import CommonMethod from './CommonMethod';
+import AppGlobal from './AppGlobal';
 
 export default class Home extends React.Component {
   constructor(props) {
@@ -11,7 +12,38 @@ export default class Home extends React.Component {
       selectedTab: 'redTab',
       hidden: false,
       fullScreen: true,
+      initInfo:{},
     };
+  }
+
+  componentDidMount() {
+    let self = this;
+    CommonMethod.sendData({
+      url: AppGlobal.url.java_url,
+      code: 'chz566JiLiZhuShouService',
+      method: 'xia_zai_yong_hu_xin_xi',
+      isLogin: false,
+      message: {},
+      successFunc: function (response) {
+        console.log(response);
+        self.setState({
+          initInfo:{
+            username: response.username,
+            userphone: response.userphone,
+            userrole: response.userrole,
+            mainid: response.mainid,
+            type1: response.type1,
+            type2: response.type2,
+            type3: response.type3,
+
+          }
+        })
+      },
+      errorFunc: function (e) {
+        console.log(e);
+      },
+      encode: true
+    });
   }
 
   renderContent(pageText){
@@ -26,7 +58,6 @@ export default class Home extends React.Component {
   renderContentConfirmJiLi(pageText) {
     return (
       <div style={{ backgroundColor: 'white', height: '100%', textAlign: 'center' }}>
-        <h1>{pageText}</h1>
         <ConfirmJiLi></ConfirmJiLi>
       </div>
     );
